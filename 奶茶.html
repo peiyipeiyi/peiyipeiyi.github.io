@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你要请苏佩怡喝奶茶吗？</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f3e5f5; /* 浅紫色背景 */
+            color: #6a1b9a; /* 深紫色文字 */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(106, 27, 154, 0.3); /* 深紫色阴影 */
+            max-width: 400px;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #6a1b9a; /* 深紫色标题 */
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            background-color: #6a1b9a; /* 深紫色按钮 */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #4a148c; /* 更深的紫色悬停效果 */
+        }
+        #yesButton {
+            transition: transform 0.3s ease;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #6a1b9a; /* 深紫色消息 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>你要请苏佩怡喝奶茶吗？</h1>
+        <div class="buttons">
+            <button id="yesButton" onclick="showYesMessage()">Yes</button>
+            <button id="noButton" onclick="handleNoClick()">No</button>
+        </div>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+        const messages = [
+            "真的不要咩？",
+            "你确定真的不要咩？",
+            "你再想下真的不要？",
+            "你最好想清楚要不要哦！",
+            "不可以no！"
+        ];
+
+        function showYesMessage() {
+            alert("💖 太好了！谢谢你的奶茶！💖");
+        }
+
+        function makeYesBigger() {
+            const yesButton = document.getElementById('yesButton');
+            let currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = `${currentSize * 2}px`;
+        }
+
+        function handleNoClick() {
+            const messageElement = document.getElementById('message');
+            const noButton = document.getElementById('noButton');
+
+            if (noClickCount < messages.length - 1) {
+                messageElement.textContent = messages[noClickCount];
+                makeYesBigger();
+                noClickCount++;
+            } else {
+                messageElement.textContent = messages[noClickCount];
+                noButton.style.display = 'none'; // 隐藏 "No" 按钮
+            }
+        }
+    </script>
+</body>
+</html>
